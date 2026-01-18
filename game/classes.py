@@ -1,17 +1,17 @@
 CLASSES = {
     "Barbáro": {
-        "forca": 5,
-        "agilidade": 4,
-        "resistencia": 4
+        "forca": 6,
+        "agilidade": 6,
+        "resistencia": 6
     },
     "Caçador": {
         "forca": 4,
-        "agilidade": 5,
+        "agilidade": 7,
         "resistencia": 4
     },
-    "Paladino": {
-        "forca": 4,
-        "agilidade": 4,
-        "resistencia": 5
+    "Gurreiro": {
+        "forca": 5,
+        "agilidade": 6,
+        "resistencia": 7
     }
 }

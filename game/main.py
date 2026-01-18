@@ -62,14 +62,89 @@ jogador = Personagem("Herói", 4, 4, 4)
 resultado = jogador.fugir()
 print("Resultado da fuga:", resultado)
 
+#primeiro teste de combate! SUCESSO
+jogador = Personagem("pala", 5, 4, 6)
+inimigo = Personagem("Monstro", 3, 3, 3)
+resultado = combate(jogador, inimigo)
+print("\nResultado do combate:", resultado)
+
+#teste robusto de combate
+# cria jogador fixo
+jogador = Personagem(
+    nome="soldado",
+    forca=6,
+    agilidade=6,
+    resistencia=6
+)
+
+# gera inimigo aleatório
+inimigo = gerar_inimigo()
+
+print("=== JOGADOR ===")
+print("Vida:", jogador.vida)
+print("Força:", jogador.forca)
+print("Agilidade:", jogador.agilidade)
+print("Resistência:", jogador.resistencia)
+print()
+
+print("=== INIMIGO ===")
+print("Nome:", inimigo.nome)
+print("Vida:", inimigo.vida)
+print("Força:", inimigo.forca)
+print("Agilidade:", inimigo.agilidade)
+print("Resistência:", inimigo.resistencia)
+print()
+
+# inicia combate
+resultado = combate(jogador, inimigo)
+
+print("\nResultado do combate:", resultado)
+
+#teste de sistema de cenas e progressão de fases/ teste 1
+from personagem import Personagem
+from fase1_cenas import cena_prisao
+
+# Criar jogador de teste
+jogador = Personagem(nome="Herói", forca=6, agilidade=6, resistencia=6)
+
+print("=== INÍCIO DA FASE 1 ===")
+
+# Loop de execução das cenas
+cena_atual = cena_prisao
+
+while cena_atual and jogador.vivo():
+    cena_atual = cena_atual(jogador)
+
+print("\n=== FIM DA FASE 1 ===")
+if not jogador.vivo():
+    print("Seu herói caiu na masmorra.")
+else:
+    print("Você completou a fase 1!")
+
 
 '''
+
+#teste de sistema de cenas e progressão de fases/ teste 1
 from personagem import Personagem
-from classes import CLASSES
-from escolha_classes import escolher_classe
-from criar_personagem import criar_personagem
-from inimigos import gerar_inimigos
-from personagem import Personagem
+from fase1_cenas import cena_prisao
+
+# Criar jogador de teste
+jogador = Personagem(nome="Herói", forca=6, agilidade=6, resistencia=6)
+
+print("=== INÍCIO DA FASE 1 ===")
+
+# Loop de execução das cenas
+cena_atual = cena_prisao
+
+while cena_atual and jogador.vivo():
+    cena_atual = cena_atual(jogador)
+
+print("\n=== FIM DA FASE 1 ===")
+if not jogador.vivo():
+    print("Seu herói caiu na masmorra.")
+else:
+    print("Você completou a fase 1!")
+
 
 
 

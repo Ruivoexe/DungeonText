@@ -20,6 +20,7 @@ class Personagem:
     def vivo(self):
         return self.vida > 0
 
+
     #equação de atributos
     def calcular_acerto(self):
         return self.agilidade+rolar_1d6()
@@ -41,18 +42,17 @@ class Personagem:
         defesa_base = self.resistencia+self.forca
         #checagem do estado defendendo
         if self.em_defesa:
-            print('Esta se defendendo!')
+            print('Esta se defendendo!: ',defesa_base*2)
             return defesa_base*2
         return defesa_base
 
     def ataque(self,alvo):
-        alvo.em_defesa = False
-        teste_acerto = self.calcular_acerto()+rolar_1d6()
+        teste_acerto = self.calcular_acerto()
         defesa_alvo = alvo.defesa()
 
         print(f'{self.nome} ataca {alvo.nome}!')
 
-        if teste_acerto > defesa_alvo:
+        if teste_acerto >= defesa_alvo:
             dano = self.calcular_dano()
             alvo.vida -= dano
 
@@ -63,6 +63,14 @@ class Personagem:
             print('rolagem:',teste_acerto)
         else:
             print("errou")
+
+        if alvo.em_defesa:
+            print('baixou a guarda')
+            alvo.em_defesa = False
+
+
+
+
 
     def defendendo(self):
         print("Assumiu posição defensiva!")
