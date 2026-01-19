@@ -5,9 +5,9 @@ CLASSES = {
         "resistencia": 6
     },
     "Caçador": {
-        "forca": 4,
+        "forca": 5,
         "agilidade": 7,
-        "resistencia": 4
+        "resistencia": 5
     },
     "Gurreiro": {
         "forca": 5,

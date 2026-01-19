@@ -124,26 +124,43 @@ else:
 
 '''
 
-#teste de sistema de cenas e progressão de fases/ teste 1
-from personagem import Personagem
+from criar_personagem import criar_personagem
 from fase1_cenas import cena_prisao
+from classes import CLASSES
 
-# Criar jogador de teste
-jogador = Personagem(nome="Herói", forca=6, agilidade=6, resistencia=6)
+def escolher_classe():
+    print("\nEscolha sua classe:")
+    classes = list(CLASSES.keys())
 
-print("=== INÍCIO DA FASE 1 ===")
+    for i, nome in enumerate(classes, 1):
+        print(f"{i} - {nome}")
 
-# Loop de execução das cenas
-cena_atual = cena_prisao
+    while True:
+        escolha = input("> ")
+        if escolha.isdigit() and 1 <= int(escolha) <= len(classes):
+            return classes[int(escolha) - 1]
+        print("Escolha inválida")
 
-while cena_atual and jogador.vivo():
-    cena_atual = cena_atual(jogador)
+def main():
+    print("=== DUNGEON TEXT ===")
 
-print("\n=== FIM DA FASE 1 ===")
-if not jogador.vivo():
-    print("Seu herói caiu na masmorra.")
-else:
-    print("Você completou a fase 1!")
+    classe = escolher_classe()
+    jogador = criar_personagem(classe)
+
+    cena_atual = cena_prisao
+
+    while cena_atual and jogador.vivo():
+        cena_atual = cena_atual(jogador)
+
+    print("\n=== FIM DO JOGO ===")
+    if not jogador.vivo():
+        print("Seu herói morreu.")
+    else:
+        print("Fim da demo.")
+
+if __name__ == "__main__":
+    main()
+
 
 
 

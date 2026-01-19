@@ -1,56 +1,61 @@
 import random
 
-def combate(jogador,inimigo):
+
+def combate(jogador, inimigo):
     print('++++++++++++++++++++++++++++++++++++++++++++++++++')
-    print('Uma maldição cruza o seu caminho! ',inimigo.nome)
+    print('Uma maldição cruza o seu caminho!', inimigo.nome)
     print('++++++++++++++++++++++++++++++++++++++++++++++++++')
 
-    #sorteio de iniciativa
-    turno_jogador = random.choice([True,False])
+    turno_jogador = random.choice([True, False])
 
     if turno_jogador:
-        print('jogador começa o combate\n')
+        print('Jogador começa o combate\n')
 
-
-    #loop de combate
     while jogador.vivo() and inimigo.vivo():
-        if turno_jogador:
-            print("+++ Seu Turno +++")
-            print('vida: ',jogador.vida)
-            print('vida do inimigo:',inimigo.vida)
 
-            print('\n1-atacar')
-            print('2-defender')
-            print('3-fugir')
+        if turno_jogador:
+            print("\n+++ Seu Turno +++")
+            print('Sua vida:', jogador.vida)
+            print('Vida do inimigo:', inimigo.vida)
+
+            print('\n1 - Atacar')
+            print('2 - Defender')
+            print('3 - Fugir')
 
             escolha = input('Escolha sua ação: ')
+
             if escolha == '1':
                 jogador.ataque(inimigo)
+
             elif escolha == '2':
                 jogador.defendendo()
+
             elif escolha == '3':
                 if jogador.fugir():
-                    print('fuga com sucesso!')
+                    print('Fuga com sucesso!')
                     return 'fuga'
+                else:
+                    print('Falhou na fuga!')
 
             else:
-                print('invalido')
-
+                print('Ação inválida!')
 
         else:
-            print('turno do inimigo')
+            print('\n+++ Turno do Inimigo +++')
             inimigo.ataque(jogador)
 
         turno_jogador = not turno_jogador
+
+    # pós-combate
     if not jogador.vivo():
-        print("morto!")
-        return('derrota')
+        print("Você morreu!")
+        return 'derrota'
 
-    print('venceu')
+    print("Você venceu o combate!")
 
-    def dropar(inimigo):
-        return random.randint(inimigo.drop_min, inimigo.drop_max)
-        print(dropar(inimigo))
-    return('venceu')
+    # drop / recompensa (XP futuramente)
+    if hasattr(inimigo, 'drop_min'):
+        drop = random.randint(inimigo.drop_min, inimigo.drop_max)
+        print(f"O inimigo deixou algo para trás ({drop})")
 
-
+    return 'vitoria'

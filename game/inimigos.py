@@ -25,6 +25,16 @@ INIMIGOS = [
     }
 ]
 
+BOSS_SALAOP={
+    "nome": "Armadura vazia do Capitão",
+    "forca": 7,
+    "agilidade": 7,
+    "resistencia": 6,
+    "drop": (120, 180),  # XP alto
+    "chave": True
+}
+
+
 def gerar_inimigo():
     dados = random.choice(INIMIGOS)
 
@@ -35,5 +45,22 @@ def gerar_inimigo():
         resistencia=dados["resistencia"]
     )
 
+
+
     inimigo.drop_min, inimigo.drop_max = dados["drop"]
     return inimigo
+
+def gerar_boss_salao():
+    dados = BOSS_SALAOP
+
+    boss = Personagem(
+        nome=dados["nome"],
+        forca=dados["forca"],
+        agilidade=dados["agilidade"],
+        resistencia=dados["resistencia"]
+    )
+
+    boss.drop_min, boss.drop_max = dados["drop"]
+    boss.tem_chave = dados.get("chave", False)
+
+    return boss

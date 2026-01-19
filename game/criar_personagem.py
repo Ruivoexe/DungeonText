@@ -1,4 +1,3 @@
-from game import personagem
 from personagem import Personagem
 from classes import CLASSES
 

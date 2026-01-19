@@ -13,8 +13,9 @@ class Personagem:
         self.vida_maxima = self.forca + (self.resistencia*2)
         self.vida = self.vida_maxima
 
-        self.lamentos = 0
+        self.inventario=[]
         self.em_defesa = False
+        self.fantasma_usado = False
 
     #checagem se personagem esta vivo
     def vivo(self):
@@ -95,6 +96,16 @@ class Personagem:
         else:
             print('falha')
             return False
+
+    def recalcular_vida_maxima(self):
+        vida_antiga = self.vida_maxima
+        self.vida_maxima = self.forca + (self.resistencia * 2)
+
+        diferenca = self.vida_maxima - vida_antiga
+        self.vida += diferenca
+
+        if self.vida > self.vida_maxima:
+            self.vida = self.vida_maxima
 
 
 
